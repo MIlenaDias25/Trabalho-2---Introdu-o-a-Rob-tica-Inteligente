@@ -1,0 +1,56 @@
+# Imagem base com ROS 2 Humble e Gazebo
+FROM osrf/ros:humble-desktop-full
+
+# Evita prompts interativos
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Atualiza pacotes e instala ferramentas necessárias
+RUN apt-get update && apt-get install -y \
+    git \
+    python3-colcon-common-extensions \
+    python3-pip \
+    python3-rosdep \
+    ros-humble-dynamixel-sdk \
+    #ros-humble-gazebo \
+    ros-humble-hls-lfcd-lds-driver \
+    ros-humble-nav2-bringup \
+    ros-humble-cartographer-ros \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    ros-humble-dynamixel-sdk \
+    ros-humble-hls-lfcd-lds-driver \
+    ros-humble-cartographer-ros \
+    ros-humble-nav2-bringup \
+    ros-humble-xacro \
+    ros-humble-gazebo-ros-pkgs \
+    #ros-humble-gazebo-ros-control
+
+# Inicializa rosdep
+RUN rosdep init || true
+RUN rosdep update
+
+COPY ros_ws /ros_ws
+
+WORKDIR /ros_ws
+
+# Instala dependências dos pacotes clonados
+RUN rosdep install \
+    --from-paths src \
+    --ignore-src \
+    -r -y
+
+# =====================================================
+# Build
+# =====================================================
+RUN /bin/bash -c "\
+source /opt/ros/humble/setup.bash && \
+colcon build --symlink-install"
+
+# =====================================================
+# Source automático
+# =====================================================
+RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc && \
+echo 'source /ros_ws/install/setup.bash' >> ~/.bashrc
+
+CMD ["/bin/bash"]

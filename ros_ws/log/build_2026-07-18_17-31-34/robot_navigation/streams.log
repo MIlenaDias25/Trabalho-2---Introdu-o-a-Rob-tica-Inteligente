@@ -1,0 +1,24 @@
+[0.888s] Invoking command in '/ros_ws/build/robot_navigation': PYTHONPATH=/ros_ws/build/robot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/ros_ws/install/robot_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /ros_ws/build/robot_navigation/build --no-deps symlink_data
+[1.115s] running develop
+[1.218s] running egg_info
+[1.219s] creating robot_navigation.egg-info
+[1.219s] writing robot_navigation.egg-info/PKG-INFO
+[1.219s] writing dependency_links to robot_navigation.egg-info/dependency_links.txt
+[1.221s] writing entry points to robot_navigation.egg-info/entry_points.txt
+[1.222s] writing requirements to robot_navigation.egg-info/requires.txt
+[1.222s] writing top-level names to robot_navigation.egg-info/top_level.txt
+[1.222s] writing manifest file 'robot_navigation.egg-info/SOURCES.txt'
+[1.222s] reading manifest file 'robot_navigation.egg-info/SOURCES.txt'
+[1.222s] writing manifest file 'robot_navigation.egg-info/SOURCES.txt'
+[1.224s] running build_ext
+[1.224s] Creating /ros_ws/install/robot_navigation/lib/python3.10/site-packages/robot-navigation.egg-link (link to .)
+[1.224s] Installing navigator script to /ros_ws/install/robot_navigation/lib/robot_navigation
+[1.225s] 
+[1.225s] Installed /ros_ws/build/robot_navigation
+[1.225s] running symlink_data
+[1.225s] creating /ros_ws/install/robot_navigation/share/ament_index
+[1.225s] creating /ros_ws/install/robot_navigation/share/ament_index/resource_index
+[1.225s] creating /ros_ws/install/robot_navigation/share/ament_index/resource_index/packages
+[1.225s] symbolically linking /ros_ws/build/robot_navigation/resource/robot_navigation -> /ros_ws/install/robot_navigation/share/ament_index/resource_index/packages
+[1.225s] symbolically linking /ros_ws/build/robot_navigation/package.xml -> /ros_ws/install/robot_navigation/share/robot_navigation
+[1.255s] Invoked command in '/ros_ws/build/robot_navigation' returned '0': PYTHONPATH=/ros_ws/build/robot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/ros_ws/install/robot_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /ros_ws/build/robot_navigation/build --no-deps symlink_data

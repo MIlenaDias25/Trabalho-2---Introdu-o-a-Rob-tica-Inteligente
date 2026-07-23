@@ -1,0 +1,54 @@
+[0.000000] (-) TimerEvent: {}
+[0.000252] (-) JobUnselected: {'identifier': 'turtlebot3'}
+[0.000307] (-) JobUnselected: {'identifier': 'turtlebot3_bringup'}
+[0.000345] (-) JobUnselected: {'identifier': 'turtlebot3_cartographer'}
+[0.000381] (-) JobUnselected: {'identifier': 'turtlebot3_description'}
+[0.000417] (-) JobUnselected: {'identifier': 'turtlebot3_example'}
+[0.000451] (-) JobUnselected: {'identifier': 'turtlebot3_fake_node'}
+[0.000483] (-) JobUnselected: {'identifier': 'turtlebot3_gazebo'}
+[0.000516] (-) JobUnselected: {'identifier': 'turtlebot3_manipulation_gazebo'}
+[0.000548] (-) JobUnselected: {'identifier': 'turtlebot3_msgs'}
+[0.000584] (-) JobUnselected: {'identifier': 'turtlebot3_navigation2'}
+[0.000616] (-) JobUnselected: {'identifier': 'turtlebot3_node'}
+[0.000649] (-) JobUnselected: {'identifier': 'turtlebot3_simulations'}
+[0.000683] (-) JobUnselected: {'identifier': 'turtlebot3_teleop'}
+[0.000721] (robot_navigation) JobQueued: {'identifier': 'robot_navigation', 'dependencies': OrderedDict()}
+[0.002574] (robot_navigation) JobStarted: {'identifier': 'robot_navigation'}
+[0.100326] (-) TimerEvent: {}
+[0.200634] (-) TimerEvent: {}
+[0.300970] (-) TimerEvent: {}
+[0.404024] (-) TimerEvent: {}
+[0.504444] (-) TimerEvent: {}
+[0.604890] (-) TimerEvent: {}
+[0.705102] (-) TimerEvent: {}
+[0.805465] (-) TimerEvent: {}
+[0.890299] (robot_navigation) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/ros_ws/build/robot_navigation/build', '--no-deps', 'symlink_data'], 'cwd': '/ros_ws/build/robot_navigation', 'env': {'HOSTNAME': 'f4403a2aabfd', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/ros_ws/install/turtlebot3_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/root', 'OLDPWD': '/ros_ws', 'ROS_PYTHON_VERSION': '3', 'MAKEFLAGS': '-j1', 'COLCON_PREFIX_PATH': '/ros_ws/install', 'ROS_DISTRO': 'humble', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_teleop:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_example:/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer:/ros_ws/install/robot_navigation:/opt/ros/humble', 'DEBIAN_FRONTEND': 'noninteractive', 'PWD': '/ros_ws/build/robot_navigation', 'TURTLEBOT3_MODEL': 'burger', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/ros_ws/build/robot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/ros_ws/install/robot_navigation/lib/python3.10/site-packages:/ros_ws/install/turtlebot3_teleop/lib/python3.10/site-packages:/ros_ws/install/turtlebot3_example/lib/python3.10/site-packages:/ros_ws/install/turtlebot3_msgs/local/lib/python3.10/dist-packages:/ros_ws/install/robot_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer'}, 'shell': False}
+[0.905544] (-) TimerEvent: {}
+[1.008951] (-) TimerEvent: {}
+[1.109388] (-) TimerEvent: {}
+[1.117446] (robot_navigation) StdoutLine: {'line': b'running develop\n'}
+[1.209486] (-) TimerEvent: {}
+[1.221121] (robot_navigation) StdoutLine: {'line': b'running egg_info\n'}
+[1.221344] (robot_navigation) StdoutLine: {'line': b'creating robot_navigation.egg-info\n'}
+[1.221495] (robot_navigation) StdoutLine: {'line': b'writing robot_navigation.egg-info/PKG-INFO\n'}
+[1.221691] (robot_navigation) StdoutLine: {'line': b'writing dependency_links to robot_navigation.egg-info/dependency_links.txt\n'}
+[1.224183] (robot_navigation) StdoutLine: {'line': b'writing entry points to robot_navigation.egg-info/entry_points.txt\n'}
+[1.224340] (robot_navigation) StdoutLine: {'line': b'writing requirements to robot_navigation.egg-info/requires.txt\n'}
+[1.224378] (robot_navigation) StdoutLine: {'line': b'writing top-level names to robot_navigation.egg-info/top_level.txt\n'}
+[1.224413] (robot_navigation) StdoutLine: {'line': b"writing manifest file 'robot_navigation.egg-info/SOURCES.txt'\n"}
+[1.224486] (robot_navigation) StdoutLine: {'line': b"reading manifest file 'robot_navigation.egg-info/SOURCES.txt'\n"}
+[1.224925] (robot_navigation) StdoutLine: {'line': b"writing manifest file 'robot_navigation.egg-info/SOURCES.txt'\n"}
+[1.226369] (robot_navigation) StdoutLine: {'line': b'running build_ext\n'}
+[1.226552] (robot_navigation) StdoutLine: {'line': b'Creating /ros_ws/install/robot_navigation/lib/python3.10/site-packages/robot-navigation.egg-link (link to .)\n'}
+[1.227215] (robot_navigation) StdoutLine: {'line': b'Installing navigator script to /ros_ws/install/robot_navigation/lib/robot_navigation\n'}
+[1.227382] (robot_navigation) StdoutLine: {'line': b'\n'}
+[1.227416] (robot_navigation) StdoutLine: {'line': b'Installed /ros_ws/build/robot_navigation\n'}
+[1.227468] (robot_navigation) StdoutLine: {'line': b'running symlink_data\n'}
+[1.227516] (robot_navigation) StdoutLine: {'line': b'creating /ros_ws/install/robot_navigation/share/ament_index\n'}
+[1.227564] (robot_navigation) StdoutLine: {'line': b'creating /ros_ws/install/robot_navigation/share/ament_index/resource_index\n'}
+[1.227649] (robot_navigation) StdoutLine: {'line': b'creating /ros_ws/install/robot_navigation/share/ament_index/resource_index/packages\n'}
+[1.227689] (robot_navigation) StdoutLine: {'line': b'symbolically linking /ros_ws/build/robot_navigation/resource/robot_navigation -> /ros_ws/install/robot_navigation/share/ament_index/resource_index/packages\n'}
+[1.227751] (robot_navigation) StdoutLine: {'line': b'symbolically linking /ros_ws/build/robot_navigation/package.xml -> /ros_ws/install/robot_navigation/share/robot_navigation\n'}
+[1.257468] (robot_navigation) CommandEnded: {'returncode': 0}
+[1.267861] (robot_navigation) JobEnded: {'identifier': 'robot_navigation', 'rc': 0}
+[1.268541] (-) EventReactorShutdown: {}

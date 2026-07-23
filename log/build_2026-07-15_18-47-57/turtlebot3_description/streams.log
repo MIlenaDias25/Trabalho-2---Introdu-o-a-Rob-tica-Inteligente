@@ -1,0 +1,19 @@
+[0.025s] Invoking command in '/home/milena/trabalho2_robotica_2026/build/turtlebot3_description': CMAKE_PREFIX_PATH=/home/milena/ros2_ws/install/stage_ros2:/home/milena/ros2_ws/install/my_py_pkg:/opt/ros/humble:/home/milena/ros2_ws/install/stage ROS_DOMAIN_ID=56 /usr/bin/cmake /home/milena/trabalho2_robotica_2026/ros_ws/src/turtlebot3/turtlebot3_description -DCMAKE_INSTALL_PREFIX=/home/milena/trabalho2_robotica_2026/install/turtlebot3_description
+[0.128s] -- The C compiler identification is GNU 11.4.0
+[0.214s] -- The CXX compiler identification is GNU 11.4.0
+[0.220s] -- Detecting C compiler ABI info
+[0.272s] -- Detecting C compiler ABI info - done
+[0.282s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.282s] -- Detecting C compile features
+[0.282s] -- Detecting C compile features - done
+[0.286s] -- Detecting CXX compiler ABI info
+[0.344s] -- Detecting CXX compiler ABI info - done
+[0.349s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.349s] -- Detecting CXX compile features
+[0.350s] -- Detecting CXX compile features - done
+[0.351s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.487s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.554s] -- Found urdf: 2.6.1 (/opt/ros/humble/share/urdf/cmake)
+[0.655s] -- Configuring done
+[0.657s] -- Generating done
+[0.658s] -- Build files have been written to: /home/milena/trabalho2_robotica_2026/build/turtlebot3_description

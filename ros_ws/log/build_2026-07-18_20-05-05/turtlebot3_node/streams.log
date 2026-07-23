@@ -1,0 +1,29 @@
+[0.012s] Invoking command in '/ros_ws/build/turtlebot3_node': CMAKE_PREFIX_PATH=/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer:/ros_ws/install/turtlebot3_teleop:/ros_ws/install/turtlebot3_example:/ros_ws/install/robot_navigation:/opt/ros/humble /usr/bin/cmake --build /ros_ws/build/turtlebot3_node
+[0.084s] [ 85%] Built target turtlebot3_node_lib
+[0.116s] [100%] Built target turtlebot3_ros
+[0.128s] Invoked command in '/ros_ws/build/turtlebot3_node' returned '0': CMAKE_PREFIX_PATH=/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer:/ros_ws/install/turtlebot3_teleop:/ros_ws/install/turtlebot3_example:/ros_ws/install/robot_navigation:/opt/ros/humble /usr/bin/cmake --build /ros_ws/build/turtlebot3_node
+[0.129s] Invoking command in '/ros_ws/build/turtlebot3_node': CMAKE_PREFIX_PATH=/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer:/ros_ws/install/turtlebot3_teleop:/ros_ws/install/turtlebot3_example:/ros_ws/install/robot_navigation:/opt/ros/humble /usr/bin/cmake --install /ros_ws/build/turtlebot3_node
+[0.148s] -- Install configuration: ""
+[0.148s] -- Execute custom install script
+[0.149s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/param/burger.yaml
+[0.149s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/param/waffle.yaml
+[0.150s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/param/waffle_pi.yaml
+[0.150s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/lib/turtlebot3_node/turtlebot3_ros
+[0.150s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/ament_index/resource_index/package_run_dependencies/turtlebot3_node
+[0.151s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/ament_index/resource_index/parent_prefix_path/turtlebot3_node
+[0.151s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/environment/ament_prefix_path.sh
+[0.151s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/environment/ament_prefix_path.dsv
+[0.152s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/environment/path.sh
+[0.152s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/environment/path.dsv
+[0.152s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/local_setup.bash
+[0.153s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/local_setup.sh
+[0.153s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/local_setup.zsh
+[0.153s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/local_setup.dsv
+[0.154s] -- Symlinking: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/package.dsv
+[0.171s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/ament_index/resource_index/packages/turtlebot3_node
+[0.171s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.171s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.172s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/cmake/turtlebot3_nodeConfig.cmake
+[0.172s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/cmake/turtlebot3_nodeConfig-version.cmake
+[0.172s] -- Up-to-date symlink: /ros_ws/install/turtlebot3_node/share/turtlebot3_node/package.xml
+[0.175s] Invoked command in '/ros_ws/build/turtlebot3_node' returned '0': CMAKE_PREFIX_PATH=/ros_ws/install/turtlebot3_msgs:/ros_ws/install/turtlebot3:/ros_ws/install/turtlebot3_simulations:/ros_ws/install/turtlebot3_bringup:/ros_ws/install/turtlebot3_node:/ros_ws/install/turtlebot3_navigation2:/ros_ws/install/turtlebot3_fake_node:/ros_ws/install/turtlebot3_manipulation_gazebo:/ros_ws/install/turtlebot3_gazebo:/ros_ws/install/turtlebot3_description:/ros_ws/install/turtlebot3_cartographer:/ros_ws/install/turtlebot3_teleop:/ros_ws/install/turtlebot3_example:/ros_ws/install/robot_navigation:/opt/ros/humble /usr/bin/cmake --install /ros_ws/build/turtlebot3_node

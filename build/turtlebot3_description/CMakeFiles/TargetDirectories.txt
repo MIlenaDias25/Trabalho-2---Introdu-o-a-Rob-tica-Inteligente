@@ -1,0 +1,9 @@
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/uninstall.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/turtlebot3_description_uninstall.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/test.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/edit_cache.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/rebuild_cache.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/list_install_components.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/install.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/install/local.dir
+/home/milena/trabalho2_robotica_2026/build/turtlebot3_description/CMakeFiles/install/strip.dir

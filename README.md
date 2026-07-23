@@ -127,6 +127,6 @@ HOME = (-2.0, 2.0)
 | `RECOVERING` | Recuo de emergência (rede de segurança contra colisão); ao terminar, força um novo `PLANNING`. |
 | `DONE` | Missão concluída. |
 
-```
 ## Link Vídeo
+
 https://drive.google.com/file/d/1zFBszRa-yI6TuMdCGxADjP-juRj75JGE/view?usp=sharing

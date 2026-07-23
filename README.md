@@ -1,265 +1,151 @@
-# Trabalho Prático - Navegação de Robôs Móveis com ROS 2 e Gazebo
+# Navegação Autônoma com RRT — `robot_navigation`
 
-## Objetivo
+Este pacote ROS 2 implementa um nó de navegação (`navigator_node`) que guia o robô por uma sequência de alvos coloridos, retornando à posição inicial (`HOME`) entre cada um. O planejamento de rota usa **RRT** (Rapidly-exploring Random Tree) para encontrar um caminho global até o alvo, e um controlador proporcional local para seguir os waypoints gerados, com um modo de recuo de emergência como rede de segurança contra colisões.
 
-Desenvolver um nó ROS 2 capaz de navegar autonomamente com o TurtleBot3 Burger em um ambiente simulado no Gazebo.
+## Pré-requisitos
 
-O robô deve localizar e alcançar uma sequência de alvos definidos no ambiente, evitando colisões com obstáculos e retornando à posição inicial após cada visita.
+- ROS 2 (testado no Humble)
+- Ambiente de simulação já configurado (Gazebo + mundo com o robô, LIDAR e os alvos coloridos)
+- Python 3.10+
 
----
+## 1. Baixe o repositório do Bryan primeiro
 
-## Ambiente Utilizado
-
-* ROS 2 Humble
-* Gazebo Classic
-* TurtleBot3 Burger
-* Docker
-
-Todo o ambiente de desenvolvimento é executado dentro de um container Docker, garantindo que todos os alunos utilizem a mesma configuração.
-
----
-
-## Estrutura do Projeto
-
-```text
-.
-├── docker/
-│   └── Dockerfile
-├── launch/
-│   └── turtlebot3_dqn_stage5.launch.py
-├── world/
-│   └── turtlebot3_dqn_stage5.world
-├── ros_ws/
-│   └── src/
-├── setup.sh
-├── run.sh
-└── control_terminal.sh
-```
-
----
-
-## Configuração Inicial
-
-Execute apenas uma vez:
+Antes de qualquer coisa, **clone o repositório do Bryan**, que contém a base do workspace/simulação necessária para este nó funcionar:
 
 ```bash
-./setup.sh
+git clone <URL_DO_REPOSITORIO_DO_BRYAN>
+cd <nome-da-pasta-clonada>
 ```
 
-O script realiza automaticamente:
+> ⚠️ Substitua `<URL_DO_REPOSITORIO_DO_BRYAN>` pelo link real do repositório antes de compartilhar este documento.
 
-* Download dos pacotes TurtleBot3 necessários;
-* Configuração do workspace ROS 2;
-* Instalação das dependências;
-* Construção da imagem Docker utilizada na disciplina.
+Siga as instruções de setup desse repositório (dependências, mundo do Gazebo, etc.) antes de prosseguir.
 
----
+## 2. Adicione este pacote ao workspace
 
-## Executando o Ambiente
-
-Inicie o container:
+Copie (ou clone) a pasta `robot_navigation` para dentro de `src/` do seu workspace ROS 2:
 
 ```bash
-./run.sh
+cd ~/ros_ws/src
+# copie a pasta robot_navigation para cá
 ```
 
-Compilar as bibliotecas:
+## 3. Compile o workspace
 
 ```bash
-colcon build
-```
-
-Configurar o ambiente:
-
-```bash
+cd ~/ros_ws
+colcon build --packages-select robot_navigation
 source install/setup.bash
 ```
 
----
+## 4. Rode a simulação
 
-## Iniciando o Simulador
-
-Dentro do container execute:
+Em um terminal, suba o ambiente de simulação (Gazebo + robô), conforme as instruções do repositório do Bryan:
 
 ```bash
-ros2 launch turtlebot3_gazebo turtlebot3_dqn_stage5.launch.py
+ros2 launch <pacote_da_simulacao> <arquivo_launch>.py
 ```
 
-Uma janela do Gazebo deverá ser aberta contendo o ambiente utilizado para o trabalho.
+## 5. Rode o nó de navegação
 
----
-
-## Criando o Seu Pacote
-
-Abra um novo terminal e acesse o container (igual a parte do `./run.sh`):
+Em outro terminal (com o workspace já com `source install/setup.bash` feito):
 
 ```bash
-./control_terminal.sh
+ros2 run robot_navigation navigator
 ```
 
-Dentro do container, navegue até o workspace:
+O robô deve planejar uma rota e começar a se mover automaticamente em direção ao primeiro alvo.
+
+## O que o nó faz
+
+- **Tópicos assinados:** `/odom` (posição/orientação do robô), `/scan` (LIDAR)
+- **Tópico publicado:** `/cmd_vel` (comandos de velocidade)
+- **Missão:** visita os 4 alvos coloridos (verde, vermelho, azul, laranja) na ordem definida em `TARGETS`, voltando para `HOME` entre cada um.
+- **Planejamento (RRT):** a cada novo objetivo, gera uma árvore aleatória a partir da posição atual do robô, com 15% de viés de amostragem direto no alvo (pra acelerar a convergência), até encontrar um caminho até o destino ou atingir o limite de iterações.
+- **Checagem de colisão:** cada segmento candidato do RRT é validado contra a leitura *atual* do LIDAR (`is_segment_colliding`), amostrando pontos ao longo do segmento e comparando com a distância detectada no ângulo correspondente.
+- **Seguimento de caminho:** um controlador proporcional (`handle_following_path`) guia o robô waypoint a waypoint pela rota planejada — gira no lugar se o erro angular for grande, senão avança corrigindo o rumo.
+- **Segurança:** modo de recuo de emergência (`RECOVERING`), acionado sempre que algo fica perigosamente perto na frente do robô; ao final do recuo, força um replanejamento (`PLANNING`) com dados de sensor atualizados.
+
+## Acompanhando a execução
+
+O nó publica logs úteis para acompanhar o que está acontecendo:
 
 ```bash
-cd /ros_ws/src
+ros2 run robot_navigation navigator
 ```
 
-Crie um novo pacote ROS 2:
+Mensagens típicas:
+- `RRT: Planejando caminho global de (...) até (...)...`
+- `RRT: Rota encontrada com N nós.`
+- `RRT: Limite de iterações atingido sem solução direta. Tentando expansão relaxada.`
+- `Alvo "<cor>" alcançado!`
+- `Robô retornou à posição HOME.`
+- `Recuo concluído. Replanejando rota global...`
+- `Missão 100% Concluída com Sucesso!`
 
-### Python
+## Parâmetros ajustáveis
 
-```bash
-ros2 pkg create \
-    --build-type ament_python \
-    robot_navigation
+Os parâmetros principais estão no `__init__` de `NavigatorNode`, em `navigator_node.py`.
+
+**Controle cinemático:**
+
+| Parâmetro | Padrão | Descrição |
+|---|---|---|
+| `ARRIVAL_THRESHOLD` | 0.35 m | Distância considerada "chegou" a um waypoint. |
+| `YAW_ALIGN_THRESHOLD` | 0.25 rad | Erro angular acima do qual o robô só gira (não anda). |
+| `MAX_LINEAR_SPEED` | 0.16 m/s | Velocidade linear máxima. |
+| `MAX_ANGULAR_SPEED` | 1.0 rad/s | Velocidade angular máxima. |
+| `kp_linear` / `kp_angular` | 0.5 / 1.2 | Ganhos do controlador proporcional. |
+
+**RRT:**
+
+| Parâmetro | Padrão | Descrição |
+|---|---|---|
+| `ROBOT_RADIUS` | 0.12 m | Raio usado na checagem de colisão. Ajuste conforme o robô real. |
+| `RRT_STEP_SIZE` | 0.25 m | Tamanho do passo de expansão da árvore. |
+| `RRT_MAX_ITER` | 3000 | Limite de iterações do planejamento antes de desistir. |
+| `MAP_BOUNDS` | (-2.5, 2.5) | Limites aproximados do cenário (X e Y), usados para amostragem aleatória. |
+
+**Recuo de emergência:**
+
+| Parâmetro | Padrão | Descrição |
+|---|---|---|
+| `EMERGENCY_DISTANCE` | 0.22 m | Distância frontal que aciona o recuo. |
+| `BACKUP_SPEED` | 0.08 m/s | Velocidade de recuo. |
+| `MAX_BACKUP_DURATION` | 2.0 s | Duração do recuo antes de replanejar. |
+
+Os alvos e a posição de `HOME` são definidos no topo do arquivo:
+
+```python
+TARGETS = [
+    ("verde",    2.20,  2.20),
+    ("vermelho", 2.15, -2.15),
+    ("azul",    -2.16, -2.16),
+    ("laranja", -2.00,  1.20),
+]
+HOME = (-2.0, 2.0)
 ```
 
-### C++
+## Estrutura do algoritmo (Máquina de Estados)
 
-```bash
-ros2 pkg create \
-    --build-type ament_cmake \
-    robot_navigation
-```
+| Estado | Comportamento |
+|---|---|
+| `PLANNING` | Executa o RRT a partir da posição atual até o objetivo corrente, gera a lista de waypoints. |
+| `FOLLOWING_PATH` | Segue os waypoints do caminho planejado com controle proporcional. |
+| `RECOVERING` | Recuo de emergência (rede de segurança contra colisão); ao terminar, força um novo `PLANNING`. |
+| `DONE` | Missão concluída. |
 
-Após a criação do pacote, compile o workspace:
+## ⚠️ Problema conhecido (importante): checagem de colisão sem mapa persistente
 
-```bash
-cd /ros_ws
+A checagem de colisão do RRT (`is_segment_colliding`) usa **apenas a leitura instantânea do LIDAR** (`self.scan_ranges`) no momento do planejamento — não existe um mapa/grade de ocupação acumulado ao longo do tempo.
 
-source /opt/ros/humble/setup.bash
+Isso é um problema porque o RRT amostra pontos em **todo o `MAP_BOUNDS`** (uma área de 5×5 m no padrão atual), mas o robô só consegue validar contra obstáculos que estão em **linha de visada direta da sua posição atual**. Qualquer coisa atrás de uma parede, de uma divisória interna ou da caixa/cone — que o robô ainda não está "vendo" no instante do planejamento — é tratada como espaço livre por padrão, mesmo que na realidade haja um obstáculo ali.
 
-colcon build --symlink-install
-```
+**Consequência esperada:** em mapas com múltiplas divisórias internas (como o cenário usado neste projeto), o RRT pode planejar rotas que atravessam paredes fora do campo de visão do LIDAR no momento do planejamento. O robô só vai perceber o erro ao se aproximar o suficiente pra realmente detectar o obstáculo, momento em que o `RECOVERING` assume como rede de segurança e força um replanejamento — mas o novo scan ainda pode ser parcial, então o mesmo tipo de erro pode se repetir em outras partes ocultas do mapa.
 
-Carregue o ambiente:
+**Correções possíveis (não implementadas ainda):**
+1. **Grade de ocupação acumulada:** manter um grid que vai marcando células como livres/ocupadas/desconhecidas conforme novas leituras de `/scan` chegam, e checar colisão do RRT contra esse grid em vez do scan bruto — a solução padrão pra esse tipo de arquitetura.
+2. **RRT de horizonte limitado:** restringir `MAP_BOUNDS` a um raio pequeno ao redor do robô e replanejar com mais frequência, reduzindo a chance de planejar através de áreas nunca vistas.
+3. **Tratar "desconhecido" como obstáculo (conservador):** em vez de assumir livre por padrão, exigir confirmação explícita de espaço livre antes de aceitar um segmento — mais seguro, porém mais lento pra explorar.
 
-```bash
-source install/setup.bash
-```
-
----
-
-## Tópicos Disponíveis
-
-### Controle do Robô
-
-```text
-/cmd_vel
-```
-
-Tipo:
-
-```text
-geometry_msgs/msg/Twist
-```
-
-Responsável por receber velocidades linear e angular.
-
----
-
-### Odometria
-
-```text
-/odom
-```
-
-Tipo:
-
-```text
-nav_msgs/msg/Odometry
-```
-
-Fornece a estimativa da posição e orientação do robô.
-
----
-
-### Sensor Laser
-
-```text
-/scan
-```
-
-Tipo:
-
-```text
-sensor_msgs/msg/LaserScan
-```
-
-Fornece medições de distância dos obstáculos ao redor do robô.
-
----
-
-## Testando o Movimento
-
-Mover para frente:
-
-```bash
-ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
-"{linear: {x: 0.2}, angular: {z: 0.0}}" \
--r 10
-```
-
-Parar o robô:
-
-```bash
-ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist \
-"{linear: {x: 0.0}, angular: {z: 0.0}}"
-```
-
----
-
-## Tarefa
-
-Desenvolver um nó ROS 2 capaz de:
-
-1. Navegar até todos os alvos definidos no ambiente;
-2. Evitar colisões com obstáculos;
-3. Retornar à posição inicial após cada visita;
-4. Executar toda a sequência de forma autônoma.
-
-A estratégia de navegação é livre.
-
-Podem ser utilizados:
-
-* Controle reativo;
-* Máquina de estados;
-* Outras abordagens estudadas durante a disciplina.
-
----
-
-## Entrega
-
-A entrega deve conter:
-
-### Código-fonte
-
-Projeto ROS 2 completo.
-
-### Vídeo
-
-Vídeo curto demonstrando:
-
-* Inicialização do sistema;
-* Navegação até todos os alvos;
-* Retorno à posição inicial.
-
-### Relatório
-
-Descrever:
-
-* Estratégia adotada;
-* Método de navegação;
-* Método de desvio de obstáculos;
-* Principais dificuldades encontradas;
-* Limitações observadas durante os testes.
-
----
-
-## Critérios de Avaliação
-
-* Funcionamento correto do sistema;
-* Organização do código;
-* Qualidade da solução proposta;
-* Capacidade de evitar colisões;
-* Clareza do relatório e do vídeo.
-
+Até uma dessas correções ser aplicada, espere que o robô precise de recuos/replanejamentos ocasionais em mapas com obstáculos ocultos do ponto de planejamento inicial.

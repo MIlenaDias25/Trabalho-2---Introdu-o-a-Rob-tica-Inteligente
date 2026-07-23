@@ -13,11 +13,7 @@ Este pacote ROS 2 implementa um nó de navegação (`navigator_node`) que guia o
 Antes de qualquer coisa, **clone o repositório do Bryan**, que contém a base do workspace/simulação necessária para este nó funcionar:
 
 ```bash
-git clone <URL_DO_REPOSITORIO_DO_BRYAN>
-cd <nome-da-pasta-clonada>
-```
-
-> ⚠️ Substitua `<URL_DO_REPOSITORIO_DO_BRYAN>` pelo link real do repositório antes de compartilhar este documento.
+git clone https://github.com/bryanumpierremoreira/trabalho2_robotica_2026.git
 
 Siga as instruções de setup desse repositório (dependências, mundo do Gazebo, etc.) antes de prosseguir.
 

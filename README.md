@@ -1,6 +1,6 @@
 # Navegação Autônoma com RRT — `robot_navigation`
 
-Este pacote ROS 2 implementa um nó de navegação (`navigator_node`) que guia o robô por uma sequência de alvos coloridos, retornando à posição inicial (`HOME`) entre cada um. O planejamento de rota usa **RRT** (Rapidly-exploring Random Tree) para encontrar um caminho global até o alvo, e um controlador proporcional local para seguir os waypoints gerados, com um modo de recuo de emergência como rede de segurança contra colisões.
+Este pacote ROS 2 implementa um nó de navegação (`navigator_node`) que guia o robô por uma sequência de quatro pontos coloridos, retornando à posição inicial (`HOME`) entre cada um. O planejamento de rota usa **RRT** (Rapidly-exploring Random Tree) para encontrar um caminho global até o alvo, e um controlador proporcional local para seguir os waypoints gerados, com um modo de recuo de emergência como rede de segurança contra colisões.
 
 ## Pré-requisitos
 

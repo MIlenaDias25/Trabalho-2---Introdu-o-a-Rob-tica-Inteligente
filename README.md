@@ -16,7 +16,7 @@ Antes de qualquer coisa, **clone o repositório do Bryan**, que contém a base d
 git clone https://github.com/bryanumpierremoreira/trabalho2_robotica_2026.git
 
 Siga as instruções de setup desse repositório (dependências, mundo do Gazebo, etc.) antes de prosseguir.
-
+```
 ## 2. Adicione este pacote ao workspace
 
 Copie (ou clone) a pasta `robot_navigation` para dentro de `src/` do seu workspace ROS 2:
@@ -36,11 +36,7 @@ source install/setup.bash
 
 ## 4. Rode a simulação
 
-Em um terminal, suba o ambiente de simulação (Gazebo + robô), conforme as instruções do repositório do Bryan:
-
-```bash
-ros2 launch <pacote_da_simulacao> <arquivo_launch>.py
-```
+Em um terminal, suba o ambiente de simulação (Gazebo + robô), conforme as instruções do repositório do Bryan
 
 ## 5. Rode o nó de navegação
 
@@ -130,18 +126,3 @@ HOME = (-2.0, 2.0)
 | `FOLLOWING_PATH` | Segue os waypoints do caminho planejado com controle proporcional. |
 | `RECOVERING` | Recuo de emergência (rede de segurança contra colisão); ao terminar, força um novo `PLANNING`. |
 | `DONE` | Missão concluída. |
-
-## ⚠️ Problema conhecido (importante): checagem de colisão sem mapa persistente
-
-A checagem de colisão do RRT (`is_segment_colliding`) usa **apenas a leitura instantânea do LIDAR** (`self.scan_ranges`) no momento do planejamento — não existe um mapa/grade de ocupação acumulado ao longo do tempo.
-
-Isso é um problema porque o RRT amostra pontos em **todo o `MAP_BOUNDS`** (uma área de 5×5 m no padrão atual), mas o robô só consegue validar contra obstáculos que estão em **linha de visada direta da sua posição atual**. Qualquer coisa atrás de uma parede, de uma divisória interna ou da caixa/cone — que o robô ainda não está "vendo" no instante do planejamento — é tratada como espaço livre por padrão, mesmo que na realidade haja um obstáculo ali.
-
-**Consequência esperada:** em mapas com múltiplas divisórias internas (como o cenário usado neste projeto), o RRT pode planejar rotas que atravessam paredes fora do campo de visão do LIDAR no momento do planejamento. O robô só vai perceber o erro ao se aproximar o suficiente pra realmente detectar o obstáculo, momento em que o `RECOVERING` assume como rede de segurança e força um replanejamento — mas o novo scan ainda pode ser parcial, então o mesmo tipo de erro pode se repetir em outras partes ocultas do mapa.
-
-**Correções possíveis (não implementadas ainda):**
-1. **Grade de ocupação acumulada:** manter um grid que vai marcando células como livres/ocupadas/desconhecidas conforme novas leituras de `/scan` chegam, e checar colisão do RRT contra esse grid em vez do scan bruto — a solução padrão pra esse tipo de arquitetura.
-2. **RRT de horizonte limitado:** restringir `MAP_BOUNDS` a um raio pequeno ao redor do robô e replanejar com mais frequência, reduzindo a chance de planejar através de áreas nunca vistas.
-3. **Tratar "desconhecido" como obstáculo (conservador):** em vez de assumir livre por padrão, exigir confirmação explícita de espaço livre antes de aceitar um segmento — mais seguro, porém mais lento pra explorar.
-
-Até uma dessas correções ser aplicada, espere que o robô precise de recuos/replanejamentos ocasionais em mapas com obstáculos ocultos do ponto de planejamento inicial.
